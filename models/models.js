@@ -2,7 +2,7 @@ var mongoose=require('mongoose');
 
 var Schema= mongoose.Schema;
 
-var user=new Schema({
+var member=new Schema({
 	username:{
 		type:String,
 		required:true
@@ -19,5 +19,5 @@ var user=new Schema({
 });
 
 module.exports={
-	User: mongoose.model('user',user)
+	Member: mongoose.model('member',member)
 };

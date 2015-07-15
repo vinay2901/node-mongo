@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig=require('swig');
 var mongoose       = require('mongoose');
-var dbConnection   = mongoose.connect('mongodb://localhost/node_sample');
+var dbConnection   = mongoose.connect('mongodb://localhost/ang');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var models=require('./models/models')
+var models=require('./models/models');
 var app = express();
 
 // view engine setup
@@ -71,6 +71,12 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 function login(req,res){
-  console.log('Verification');
-  res.redirect('/');
+  models.Member.findOne({},function(err,docs){
+    if(err)
+      console.log('db error');
+    if(docs){
+      console.log('-------',docs,'------','valid user');
+      res.render('dashboard');
+    }
+  });
 }
